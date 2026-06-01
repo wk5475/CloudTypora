@@ -1,19 +1,16 @@
-import { WorkspaceShell } from "@/components/layout/workspace-shell";
-import { MarkdownEditor } from "@/editor/components/markdown-editor";
-
-const initialMarkdown = `# CloudTypora
-
-保持 Markdown 优先，先写入本地缓存，再进行增量同步。
-
-- 编辑体验优先
-- 离线优先
-- 同步稳定优先
-`;
+import { Suspense } from "react";
+import { NotesWorkspace } from "./notes-workspace";
 
 export default function NotesPage() {
   return (
-    <WorkspaceShell>
-      <MarkdownEditor documentId="welcome" initialMarkdown={initialMarkdown} />
-    </WorkspaceShell>
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center bg-paper text-moss">
+          正在读取本地 Markdown...
+        </div>
+      }
+    >
+      <NotesWorkspace />
+    </Suspense>
   );
 }

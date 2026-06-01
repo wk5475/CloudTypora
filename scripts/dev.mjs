@@ -36,7 +36,7 @@ const commands = isWindows
     ];
 
 const children = commands.map(([name, command, args]) => {
-  const child = spawn(isWindows ? `${command}.cmd` : command, args, {
+  const child = spawn(command, args, {
     stdio: "inherit",
     shell: false,
   });
